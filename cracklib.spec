@@ -2,15 +2,15 @@
 %define maj 2
 %define libname %mklibname %root %maj
 %define libnamedev %libname-devel
-%define py_cracklibdir %{py_sitedir}
-%if %{mdkversion} >= 200700
 %define py_cracklibdir %{py_platsitedir}
-%endif
+%define name cracklib
+%define version 2.8.10
+%define release %mkrel 1
 
 Summary:	A password-checking library
-Name:		cracklib
-Version:	2.8.9
-Release:	%mkrel 2
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
 Group:		System/Libraries
 License:	Artistic
 URL:		http://sourceforge.net/projects/cracklib/
@@ -182,5 +182,3 @@ rm -rf %{buildroot}
 %{_datadir}/cracklib/cracklib.magic
 %{_datadir}/cracklib/pw_dict*
 %{_libdir}/cracklib_dict.*
-
-
