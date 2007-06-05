@@ -5,7 +5,7 @@
 %define py_cracklibdir %{py_platsitedir}
 %define name cracklib
 %define version 2.8.10
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:	A password-checking library
 Name:		%{name}
@@ -137,6 +137,7 @@ rm -rf %{buildroot}
 
 %makeinstall_std
 
+chmod 0755 ./util/cracklib-format ./util/cracklib-packer
 ./util/cracklib-format dicts/* | ./util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
 
 ln -s cracklib-format %{buildroot}%{_sbindir}/mkdict
