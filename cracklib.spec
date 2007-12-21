@@ -44,6 +44,7 @@ Source34:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.bz2
 Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
 Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
 BuildRequires:	python, python-devel
+Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 CrackLib tests passwords to determine whether they match certain
