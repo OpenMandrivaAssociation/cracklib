@@ -5,7 +5,7 @@
 %define py_cracklibdir %{py_platsitedir}
 %define name cracklib
 %define version 2.8.10
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary:	A password-checking library
 Name:		%{name}
