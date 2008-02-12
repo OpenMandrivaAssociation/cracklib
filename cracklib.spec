@@ -75,7 +75,6 @@ Provides:	lib%{root}-devel %{root}-devel = %{version}-%{release}
 Obsoletes:	cracklib
 
 %description -n %libname
-
 %{see_base}
 
 %package -n	%libname-python
@@ -85,7 +84,6 @@ Provides:	lib%{root}-python-devel %{root}-python-devel = %{version}-%{release}
 Obsoletes:	cracklib-python
 
 %description -n %libname-python
-
 %{see_base}
 
 %package	dicts
