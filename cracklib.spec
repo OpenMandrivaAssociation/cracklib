@@ -75,7 +75,8 @@ Provides:	lib%{root}-devel %{root}-devel = %{version}-%{release}
 Obsoletes:	cracklib
 
 %description -n %libname
-%{see_base}
+CrackLib tests passwords to determine whether they match certain
+security-oriented characteristics.
 
 %package -n	%libname-python
 Summary:	A password-checking library
