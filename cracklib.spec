@@ -1,20 +1,17 @@
-%define root crack
-%define maj 2
-%define libname %mklibname %root %maj
-%define libnamedev %libname-devel
-%define py_cracklibdir %{py_platsitedir}
-%define name cracklib
-%define version 2.8.10
-%define release %mkrel 6
+%define root	crack
+
+%define major		2
+%define libname		%mklibname %root %major
+%define develname	%mklibname %root -d
 
 Summary:	A password-checking library
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		cracklib
+Version:	2.8.12
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	Artistic
 URL:		http://sourceforge.net/projects/cracklib/
-Source0:	http://prdownloads.sourceforge.net/cracklib/cracklib-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/cracklib/cracklib-%{version}.tar.gz
 Source1:        http://prdownloads.sourceforge.net/cracklib/cracklib-words.bz2
 Source10:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Domains.bz2
 Source11:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Dosref.bz2
@@ -43,7 +40,8 @@ Source33:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.french.bz2
 Source34:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.bz2
 Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
 Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
-BuildRequires:	python, python-devel
+BuildRequires:	python
+BuildRequires:	python-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
@@ -68,24 +66,23 @@ passwords to see if they are at least minimally secure. If you
 install CrackLib, you'll also want to install the cracklib-dicts
 package.
 
-%package -n	%libname
+%package -n	%{libname}
 Summary:	A password-checking library
 Group:		System/Libraries
-Provides:	lib%{root}-devel %{root}-devel = %{version}-%{release}
-Obsoletes:	cracklib
+Obsoletes:	cracklib < %{version}-%{release}
 
-%description -n %libname
+%description -n %{libname}
 CrackLib tests passwords to determine whether they match certain
 security-oriented characteristics.
 
-%package -n	%libname-python
+%package -n	%{libname}-python
 Summary:	A password-checking library
 Group:		System/Libraries
-Provides:	lib%{root}-python-devel %{root}-python-devel = %{version}-%{release}
-Obsoletes:	cracklib-python
+Obsoletes:	cracklib-python < %{version}-%{release}
 
-%description -n %libname-python
-%{see_base}
+%description -n %{libname}-python
+CrackLib tests passwords to determine whether they match certain
+security-oriented characteristics.
 
 %package	dicts
 Summary:	The standard CrackLib dictionaries
@@ -99,21 +96,20 @@ the utilities necessary for the creation of new dictionaries.
 
 If you are installing CrackLib, you should also install cracklib-dicts.
 
-%package -n	%libnamedev
+%package -n	%{develname}
 Summary:	Cracklib link library & header file
 Group:		Development/C
-Provides:	lib%{root}-devel %{root}-devel = %{version}-%{release}
+Provides:	lib%{root}-devel = %{version}-%{release}
 Provides:	%{root}lib-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
-Obsoletes:	cracklib-devel
+Obsoletes:	cracklib-devel < %{version}-%{release}
+Obsoletes:	%{mklibname crack 2 -d} < %{version}-%{release}
 
-%description -n	%libnamedev
+%description -n	%{develname}
 The cracklib devel package include the needed library link and
 header files for development.
 
-
 %prep
-
 %setup -q
 
 for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} \
@@ -126,14 +122,11 @@ done
 bunzip2 dicts/*.bz2
 
 %build
-
-%configure2_5x
-
+%configure2_5x --libdir=/%{_lib}
 %make
 
 %install
 rm -rf %{buildroot}
-
 %makeinstall_std
 
 chmod 0755 ./util/cracklib-format ./util/cracklib-packer
@@ -154,35 +147,32 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 rm -rf %{buildroot}
 
 %if %mdkversion < 200900
-%post -n %libname -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 %endif
 
 %if %mdkversion < 200900
-%postun -n %libname -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 %endif
 
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog NEWS README* doc/LICENCE
-%{_libdir}/*.so.*
+/%{_lib}/*.so.%{major}*
 
 
 %files -n %{libname}-python
 %defattr(-,root,root)
-%{py_cracklibdir}/cracklib*
+%{py_platsitedir}/cracklib*
 
 %files -f %{name}.lang
-%files -n %{libnamedev}
+%files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/*
-%{_libdir}/*.so
-%{_libdir}/*.la
-%{_libdir}/*.a
+/%{_lib}/*.so
+/%{_lib}/*.*a
 
 %files dicts
 %defattr(-,root,root)
 %{_sbindir}/*
-%dir %{_datadir}/cracklib
-%{_datadir}/cracklib/cracklib.magic
-%{_datadir}/cracklib/pw_dict*
+%{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
