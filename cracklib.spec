@@ -156,7 +156,7 @@ rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog NEWS README* doc/LICENCE
+%doc AUTHORS COPYING ChangeLog NEWS README*
 /%{_lib}/*.so.%{major}*
 
 
