@@ -6,7 +6,7 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.8.12
+Version:	2.8.13
 Release:	%mkrel 1
 Group:		System/Libraries
 License:	Artistic
@@ -163,6 +163,7 @@ rm -rf %{buildroot}
 %files -n %{libname}-python
 %defattr(-,root,root)
 %{py_platsitedir}/cracklib*
+%{py_platsitedir}/_cracklib*
 
 %files -f %{name}.lang
 %files -n %{develname}
