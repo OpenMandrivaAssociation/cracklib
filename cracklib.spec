@@ -40,9 +40,10 @@ Source33:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.french.bz2
 Source34:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.bz2
 Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
 Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
+Patch:      cracklib-2.8.13-fix-python-path.patch
 BuildRequires:	python
 BuildRequires:	python-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-root
+Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
 CrackLib tests passwords to determine whether they match certain
@@ -111,6 +112,8 @@ header files for development.
 
 %prep
 %setup -q
+%patch -p 1
+autoreconf
 
 for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} \
     %{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE20} %{SOURCE21} \
