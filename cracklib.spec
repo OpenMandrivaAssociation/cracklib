@@ -7,7 +7,7 @@
 Summary:	A password-checking library
 Name:		cracklib
 Version:	2.8.13
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		System/Libraries
 License:	Artistic
 URL:		http://sourceforge.net/projects/cracklib/
@@ -41,8 +41,6 @@ Source34:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.bz2
 Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
 Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
 Patch:      cracklib-2.8.13-fix-python-path.patch
-BuildRequires:	python
-BuildRequires:	python-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -80,6 +78,7 @@ security-oriented characteristics.
 Summary:	A password-checking library
 Group:		System/Libraries
 Obsoletes:	cracklib-python < %{version}-%{release}
+%py_requires -d
 
 %description -n %{libname}-python
 CrackLib tests passwords to determine whether they match certain
