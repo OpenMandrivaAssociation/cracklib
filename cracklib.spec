@@ -1,5 +1,7 @@
 %define root	crack
 
+%define _enable_libtoolize 1
+
 %define major		2
 %define libname		%mklibname %root %major
 %define develname	%mklibname %root -d
