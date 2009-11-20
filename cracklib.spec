@@ -8,10 +8,10 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.8.13
-Release:	%mkrel 4
+Version:	2.8.15
+Release:	%mkrel 1
 Group:		System/Libraries
-License:	Artistic
+License:	LGPLv2
 URL:		http://sourceforge.net/projects/cracklib/
 Source0:	http://prdownloads.sourceforge.net/cracklib/cracklib-%{version}.tar.gz
 Source1:        http://prdownloads.sourceforge.net/cracklib/cracklib-words.bz2
@@ -42,7 +42,9 @@ Source33:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.french.bz2
 Source34:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.bz2
 Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
 Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
-Patch:      cracklib-2.8.13-fix-python-path.patch
+Patch:		cracklib-2.8.15-fix-python-path.patch
+Conflicts:	libcrack2 < 2.8.15
+Conflicts:	lib64crack2 < 2.8.15
 Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -160,7 +162,6 @@ rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog NEWS README*
 /%{_lib}/*.so.%{major}*
 
 
@@ -170,6 +171,8 @@ rm -rf %{buildroot}
 %{py_platsitedir}/_cracklib*
 
 %files -f %{name}.lang
+%doc AUTHORS NEWS README*
+
 %files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/*
