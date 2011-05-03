@@ -47,6 +47,7 @@ Patch1:		cracklib-2.8.15-inttypes.patch
 Patch2:		cracklib-2.8.12-gettext.patch
 Conflicts:	libcrack2 < 2.8.15
 Conflicts:	lib64crack2 < 2.8.15
+BuildRequires:	gettext-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
