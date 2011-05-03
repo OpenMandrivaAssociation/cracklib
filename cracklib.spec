@@ -8,8 +8,8 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.8.16
-Release:	%mkrel 3
+Version:	2.8.18
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	LGPLv2
 URL:		http://sourceforge.net/projects/cracklib/
@@ -42,7 +42,9 @@ Source33:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.french.bz2
 Source34:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.bz2
 Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
 Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
-Patch:		cracklib-2.8.15-fix-python-path.patch
+Patch0:		cracklib-2.8.15-fix-python-path.patch
+Patch1:		cracklib-2.8.15-inttypes.patch
+Patch2:		cracklib-2.8.12-gettext.patch
 Conflicts:	libcrack2 < 2.8.15
 Conflicts:	lib64crack2 < 2.8.15
 Buildroot:	%{_tmppath}/%{name}-%{version}
@@ -115,8 +117,12 @@ header files for development.
 
 %prep
 %setup -q
-%patch -p 1
-autoreconf
+%patch0 -p0
+cp -p lib/packer.h lib/packer.h.in
+%patch1 -p1 -b .inttypes
+%patch2 -p1 -b .gettext
+
+autoreconf -fi
 
 for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} \
     %{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE20} %{SOURCE21} \
@@ -163,7 +169,6 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 /%{_lib}/*.so.%{major}*
-
 
 %files -n %{libname}-python
 %defattr(-,root,root)
