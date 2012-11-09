@@ -1,0 +1,9 @@
+--- python/Makefile.am	2010-09-29 16:58:06.000000000 +0200
++++ python/Makefile.am.oden	2011-05-03 08:08:41.947027008 +0200
+@@ -1,5 +1,5 @@
+ if BUILD_PYTHON
+-python_PYTHON = cracklib.py
++pyexec_PYTHON = cracklib.py
+ pyexec_LTLIBRARIES = _cracklibmodule.la
+ AM_CFLAGS = -I$(top_srcdir)/lib -Wall
+ _cracklibmodule_la_LDFLAGS = -module -avoid-version $(top_builddir)/lib/libcrack.la
