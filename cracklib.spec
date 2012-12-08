@@ -9,7 +9,7 @@
 Summary:	A password-checking library
 Name:		cracklib
 Version:	2.8.18
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		System/Libraries
 License:	LGPLv2
 URL:		http://sourceforge.net/projects/cracklib/
@@ -190,3 +190,123 @@ rm -rf %{buildroot}
 %{_sbindir}/*
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
+
+
+%changelog
+* Wed Feb 22 2012 abf
+- The release updated by ABF
+
+* Tue May 03 2011 Funda Wang <fwang@mandriva.org> 2.8.18-1mdv2011.0
++ Revision: 663999
+- br gettext-devel
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - 2.8.18
+    - rediffed P0
+    - added fixes from fedora (P1+P2)
+    - mass rebuild
+
+* Sat Oct 30 2010 Shlomi Fish <shlomif@mandriva.org> 2.8.16-2mdv2011.0
++ Revision: 590592
+- Bump to new release for python-2.7
+
+* Wed Mar 03 2010 Frederik Himpe <fhimpe@mandriva.org> 2.8.16-1mdv2010.1
++ Revision: 514005
+- update to new version 2.8.16
+
+* Fri Nov 20 2009 Frederik Himpe <fhimpe@mandriva.org> 2.8.15-1mdv2010.1
++ Revision: 467688
+- Update to new version 2.8.15
+- Rediff Python path patch
+- Fix libification by moving docs out of library package
+
+* Sun Aug 09 2009 Oden Eriksson <oeriksson@mandriva.com> 2.8.13-4mdv2010.0
++ Revision: 413276
+- rebuild
+
+  + Arnaud Patard <apatard@mandriva.com>
+    - Fix ftbfs with newer libtool by defining _enable_libtoolize
+
+* Sat Dec 27 2008 Funda Wang <fwang@mandriva.org> 2.8.13-3mdv2009.1
++ Revision: 319812
+- rebuild for new python
+
+* Sat Dec 20 2008 Oden Eriksson <oeriksson@mandriva.com> 2.8.13-2mdv2009.1
++ Revision: 316518
+- rebuild
+
+* Mon Oct 27 2008 Guillaume Rousse <guillomovitch@mandriva.org> 2.8.13-1mdv2009.1
++ Revision: 297783
+- patch: fix python modules installation path
+- new version
+
+* Thu Jun 19 2008 Adam Williamson <awilliamson@mandriva.org> 2.8.12-1mdv2009.0
++ Revision: 226736
+- docs/LICENCE doesn't exist any more..
+- new release 2.8.12
+- move shared library to /lib (fix #40626, impossible to login without /usr)
+- clean file lists
+- drop bogus and/or useless devel provides in lib and python packages
+- fix python package description
+- version obsoletes
+- new devel policy
+- simplify and clean spec
+
+* Mon Jun 16 2008 Thierry Vignaud <tv@mandriva.org> 2.8.10-6mdv2009.0
++ Revision: 220517
+- rebuild
+- fix spacing at top of description
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+  + Olivier Blin <oblin@mandriva.com>
+    - fix library description (broken for 5 years)
+
+* Fri Jan 11 2008 Thierry Vignaud <tv@mandriva.org> 2.8.10-5mdv2008.1
++ Revision: 149140
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Adam Williamson <awilliamson@mandriva.org>
+    - rebuild for optflags
+    - make format and packer executable prior to running them in %%install (#31210)
+
+  + Anssi Hannula <anssi@mandriva.org>
+    - rebuild with correct optflags
+
+* Sat Jun 02 2007 Adam Williamson <awilliamson@mandriva.org> 2.8.10-1mdv2008.0
++ Revision: 34743
+- new release 2.8.10, remove pre-2007 workaround
+
+
+* Thu Dec 14 2006 Gwenole Beauchesne <gbeauchesne@mandriva.com> 2.8.9-2mdv2007.0
++ Revision: 96899
+- BuildRequires: python-devel
+- BuildRequires: python
+- fix build
+- Import cracklib
+
+* Sat Jun 24 2006 Emmanuel Andry <eandry@mandriva.org> 2.8.9-1mdv2007.0
+- 2.8.9
+- %%mkrel
+- add cracklib-python package
+
+* Sat May 13 2006 Stefan van der Eijk <stefan@eijk.nu> 2.8.3-3mdk
+- rebuild for sparc
+
+* Sat Dec 31 2005 Mandriva Linux Team <http://www.mandrivaexpert.com/> 2.8.3-2mdk
+- Rebuild
+
+* Wed Apr 27 2005 Oden Eriksson <oeriksson@mandriva.com> 2.8.3-1mdk
+- 2.8.3, new url, drop upstream implemented patches
+- sync some with fedora
+- fix summary-ended-with-dot
+
+* Thu May 27 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 2.7-18mdk
+- add one missing header file
+- misc spec file fixes
+
