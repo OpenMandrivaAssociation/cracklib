@@ -9,7 +9,7 @@
 Summary:	A password-checking library
 Name:		cracklib
 Version:	2.8.22
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	LGPLv2
 URL:		http://sourceforge.net/projects/cracklib/
@@ -44,6 +44,7 @@ Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
 Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
 Patch0:		cracklib-2.8.15-fix-python-path.patch
 Patch1:		cracklib-2.8.15-inttypes.patch
+Patch2:		cracklib-2.8.22-automake-1.13.patch
 Conflicts:	libcrack2 < 2.8.15
 Conflicts:	lib64crack2 < 2.8.15
 BuildRequires:	gettext-devel
@@ -119,6 +120,7 @@ header files for development.
 %patch0 -p1
 cp -p lib/packer.h lib/packer.h.in
 %patch1 -p1 -b .inttypes
+%patch2 -p1 -b .am113~
 
 autoreconf -fi
 
