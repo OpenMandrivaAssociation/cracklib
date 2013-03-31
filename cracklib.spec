@@ -1,53 +1,51 @@
-%define root	crack
-
-%define _enable_libtoolize 1
-
-%define major		2
-%define libname		%mklibname %root %major
-%define develname	%mklibname %root -d
+%define wdate	2008-05-07
+%define vwdate %(echo %{wdate}|sed -e 's|-||g')
+%define sname	crack
+%define major	2
+%define libname	%mklibname %{sname} %{major}
+%define devname	%mklibname %{sname} -d
 
 Summary:	A password-checking library
 Name:		cracklib
 Version:	2.8.22
-Release:	2
+Release:	3
 Group:		System/Libraries
 License:	LGPLv2
-URL:		http://sourceforge.net/projects/cracklib/
-Source0:	http://prdownloads.sourceforge.net/cracklib/cracklib-%{version}.tar.gz
-Source1:        http://prdownloads.sourceforge.net/cracklib/cracklib-words.bz2
-Source10:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Domains.bz2
-Source11:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Dosref.bz2
-Source12:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Ftpsites.bz2
-Source13:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Jargon.bz2
-Source14:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/common-passwords.txt.bz2
-Source15:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/etc-hosts.bz2
-Source16:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/movieTV/Movies.bz2
-Source17:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/movieTV/Python.bz2
-Source18:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/movieTV/Trek.bz2
-Source19:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/LCarrol.bz2
-Source20:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/Paradise.Lost.bz2
-Source21:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/cartoon.bz2
-Source22:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/myths-legends.bz2
-Source23:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/sf.bz2
-Source24:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/shakespeare.bz2
-Source25:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/ASSurnames.bz2
-Source26:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/Congress.bz2
-Source27:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/Family-Names.bz2
-Source28:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/Given-Names.bz2
-Source29:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/famous.bz2
-Source30:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/fast-names.bz2
-Source31:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/female-names.bz2
-Source32:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/male-names.bz2
-Source33:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.french.bz2
-Source34:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.bz2
-Source35:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.bz2
-Source36:	ftp://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.bz2
+Url:		http://sourceforge.net/projects/cracklib/
+Source0:	http://prdownloads.sourceforge.net/cracklib/%{version}/%{name}-%{version}.tar.gz
+Source1:        http://prdownloads.sourceforge.net/cracklib/%{wdate}/cracklib-words-%{vwdate}.gz
+Source10:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Domains.gz
+Source11:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Dosref.gz
+Source12:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Ftpsites.gz
+Source13:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Jargon.gz
+Source14:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/common-passwords.txt.gz
+Source15:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/etc-hosts.gz
+Source16:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/movieTV/Movies.gz
+Source17:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/movieTV/Python.gz
+Source18:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/movieTV/Trek.gz
+Source19:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/LCarrol.gz
+Source20:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/Paradise.Lost.gz
+Source21:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/cartoon.gz
+Source22:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/myths-legends.gz
+Source23:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/sf.gz
+Source24:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/literature/shakespeare.gz
+Source25:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/ASSurnames.gz
+Source26:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/Congress.gz
+Source27:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/Family-Names.gz
+Source28:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/Given-Names.gz
+Source29:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/famous.gz
+Source30:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/fast-names.gz
+Source31:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/female-names.gz
+Source32:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/male-names.gz
+Source33:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.french.gz
+Source34:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.gz
+Source35:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.gz
+Source36:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.gz
 Patch0:		cracklib-2.8.15-fix-python-path.patch
 Patch1:		cracklib-2.8.15-inttypes.patch
 Patch2:		cracklib-2.8.22-automake-1.13.patch
-Conflicts:	libcrack2 < 2.8.15
-Conflicts:	lib64crack2 < 2.8.15
 BuildRequires:	gettext-devel
+Suggests:	%{name}-dicts = %{version}-%{release}
 
 %description
 CrackLib tests passwords to determine whether they match certain
@@ -74,21 +72,22 @@ package.
 %package -n	%{libname}
 Summary:	A password-checking library
 Group:		System/Libraries
-Obsoletes:	cracklib < %{version}-%{release}
+Suggests:	%{name} = %{version}-%{release}
 
 %description -n %{libname}
 CrackLib tests passwords to determine whether they match certain
 security-oriented characteristics.
 
-%package -n	%{libname}-python
-Summary:	A password-checking library
-Group:		System/Libraries
-Obsoletes:	cracklib-python < %{version}-%{release}
-%py_requires -d
+%package -n	%{devname}
+Summary:	Cracklib link library & header file
+Group:		Development/C
+Provides:	lib%{sname}-devel = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{version}
 
-%description -n %{libname}-python
-CrackLib tests passwords to determine whether they match certain
-security-oriented characteristics.
+%description -n	%{devname}
+The cracklib devel package include the needed library link and
+header files for development.
 
 %package	dicts
 Summary:	The standard CrackLib dictionaries
@@ -102,36 +101,31 @@ the utilities necessary for the creation of new dictionaries.
 
 If you are installing CrackLib, you should also install cracklib-dicts.
 
-%package -n	%{develname}
-Summary:	Cracklib link library & header file
-Group:		Development/C
-Provides:	lib%{root}-devel = %{version}-%{release}
-Provides:	%{root}lib-devel = %{version}-%{release}
-Requires:	%{libname} = %{version}
-Obsoletes:	cracklib-devel < %{version}-%{release}
-Obsoletes:	%{mklibname crack 2 -d} < %{version}-%{release}
+%package -n	python-%{name}
+Summary:	A password-checking library
+Group:		System/Libraries
+%rename		%{_lib}crack2-python
+%py_requires -d
 
-%description -n	%{develname}
-The cracklib devel package include the needed library link and
-header files for development.
+%description -n python-%{name}
+CrackLib tests passwords to determine whether they match certain
+security-oriented characteristics.
 
 %prep
 %setup -q
-%patch0 -p1
 cp -p lib/packer.h lib/packer.h.in
-%patch1 -p1 -b .inttypes
-%patch2 -p1 -b .am113~
-
+%apply_patches
 autoreconf -fi
 
 for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} \
-    %{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE20} %{SOURCE21} \
-    %{SOURCE22} %{SOURCE23} %{SOURCE24} %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} \
-    %{SOURCE29} %{SOURCE30} %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} \
-    %{SOURCE36} %{SOURCE1}; do
-    cp ${dict} dicts/
+	%{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE20} %{SOURCE21} \
+	%{SOURCE22} %{SOURCE23} %{SOURCE24} %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} \
+	%{SOURCE29} %{SOURCE30} %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} \
+	%{SOURCE36} %{SOURCE1}; do
+	cp ${dict} dicts/
 done
-bunzip2 dicts/*.bz2
+gunzip dicts/*.gz
+mv dicts/cracklib-words-%{vwdate} dicts/cracklib-words
 
 %build
 %configure2_5x --libdir=/%{_lib}
@@ -154,17 +148,13 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 
 %find_lang %{name}
 
-%files -n %{libname}
-/%{_lib}/*.so.%{major}*
-
-%files -n %{libname}-python
-%{py_platsitedir}/cracklib*
-%{py_platsitedir}/_cracklib*
-
 %files -f %{name}.lang
 %doc AUTHORS NEWS README*
 
-%files -n %{develname}
+%files -n %{libname}
+/%{_lib}/libcrack.so.%{major}*
+
+%files -n %{devname}
 %{_includedir}/*
 /%{_lib}/*.so
 /%{_lib}/*.*a
@@ -173,3 +163,8 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %{_sbindir}/*
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
+
+%files -n python-%{name}
+%{py_platsitedir}/cracklib*
+%{py_platsitedir}/_cracklib*
+
