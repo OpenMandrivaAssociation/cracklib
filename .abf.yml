@@ -1,3 +1,32 @@
-sources:
+removed_sources:
   cracklib-2.8.22.tar.gz: d91d977a1909e0cc3f5cb30754ba5e5e90655ab0
+sources:
+  ASSurnames.gz: abb25a4a14fc300475f5c4bc2284cf12d0e3e454
+  Congress.gz: 35149fad0e21b8a282891af40268893b0fd57aac
+  Domains.gz: 3690344634e3042f0429fefba472fcf34461f1f2
+  Dosref.gz: fcf581701114563ae0c4147299f413cb4529c160
+  Family-Names.gz: 4f61a2c2fbb1379c59b99a54a93eb3ea137af29f
+  Ftpsites.gz: 73aa233e6304c7764af1ffa849b9a3496bcecac8
+  Given-Names.gz: def9ca2e6dd86bd12bd562e01fc4a4c14035d179
+  Jargon.gz: 13bb47b1d6d7aea65e6290a1929cf5655fbdbf5d
+  LCarrol.gz: 8a1ee99cf32bdad43b6aabeb386e473ac60c459f
+  Movies.gz: 6485e39c20cd83fcd33b4c09b2f3536b139ffc17
+  Paradise.Lost.gz: eba36ee5c457f7549d24ec77f23f1e036b370c78
+  Python.gz: 1e50f147ea616cf707cb2d47cc27d639232029cf
+  Trek.gz: 56dfa1bf8d1d09b9146450045d7f398f308a4a4b
+  cartoon.gz: 491699d6daf42ffb2dd7cb2f19accd0cf1c09d61
+  common-passwords.txt.gz: 36dbdf115cf1caeac0388032d6fb12c0e522199b
+  cracklib-2.9.0.tar.gz: 827dcd24b14bf23911c34f4226b4453b24f949a3
   cracklib-words-20080507.gz: e0cea03e505e709b15b8b950d56cb493166607da
+  etc-hosts.gz: 8441b6de873fb7d5b4ec7d33f63af8e4d3d7de42
+  famous.gz: ea6fd7f72dbad1a94458ec7e31c4a633fc5412cb
+  fast-names.gz: b7745e93191000cc20e2edc71bb57286c8d248b5
+  female-names.gz: 91f55ea4810b1699bd24989bde20ba6243f96c14
+  male-names.gz: 9a51897f6119f05224eb4d2c40a946f85ca001c8
+  myths-legends.gz: bbcbba49388f8b463d2633e7b9d8fd195a65030c
+  names.french.gz: 04ea01a91b46e0aa7f3d73f8638487a39e7c7f18
+  names.hp.gz: 4422ca4a26d2c7e7524925dfe62d331bb34c342e
+  other-names.gz: e20ec033a5dec9415ccdab322ae5ad57dd37f14c
+  sf.gz: 24a5a29a66215e17d24deb0b520ad2ccf88cd985
+  shakespeare.gz: 9f5013c8e985fc3ab8bbbec5805f818f2a7fe997
+  surnames.finnish.gz: 547efc0bc895eafdb432e562d324c2208fc28600
