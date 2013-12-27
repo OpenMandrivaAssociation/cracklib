@@ -127,7 +127,7 @@ gunzip dicts/*.gz
 mv dicts/cracklib-words-%{vwdate} dicts/cracklib-words
 
 %build
-%configure2_5x --libdir=/%{_lib}
+%configure2_5x --libdir=/%{_lib} --enable-static
 %make
 
 %install
