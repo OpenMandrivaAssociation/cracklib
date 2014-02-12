@@ -8,7 +8,7 @@
 Summary:	A password-checking library
 Name:		cracklib
 Version:	2.9.0
-Release:	6
+Release:	7
 Group:		System/Libraries
 License:	LGPLv2
 Url:		http://sourceforge.net/projects/cracklib/
@@ -104,7 +104,7 @@ If you are installing CrackLib, you should also install cracklib-dicts.
 Summary:	A password-checking library
 Group:		System/Libraries
 %rename		%{_lib}crack2-python
-%py_requires -d
+BuildRequires: python-devel
 
 %description -n python-%{name}
 CrackLib tests passwords to determine whether they match certain
@@ -127,7 +127,7 @@ gunzip dicts/*.gz
 mv dicts/cracklib-words-%{vwdate} dicts/cracklib-words
 
 %build
-%configure2_5x --libdir=/%{_lib}
+%configure2_5x --libdir=/%{_lib} --enable-static
 %make
 
 %install
@@ -166,4 +166,3 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %files -n python-%{name}
 %{py_platsitedir}/cracklib*
 %{py_platsitedir}/_cracklib*
-
