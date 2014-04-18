@@ -133,6 +133,9 @@ mv dicts/cracklib-words-%{vwdate} dicts/cracklib-words
 %install
 %makeinstall_std
 
+# MD remove static python lib
+rm -f %{buildroot}%{py_platsitedir}/_cracklib.a
+
 chmod 0755 ./util/cracklib-format ./util/cracklib-packer
 ./util/cracklib-format dicts/* | ./util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
 
@@ -165,5 +168,5 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 
 %files -n python-%{name}
 %{py_platsitedir}/cracklib*
-%{py_platsitedir}/_cracklib*
+%{py_platsitedir}/_cracklib.so
 
