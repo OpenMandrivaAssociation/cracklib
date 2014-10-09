@@ -136,7 +136,7 @@ export PYTHON=python2
 %makeinstall_std
 
 # MD remove static python lib
-rm -f %{buildroot}%{py_platsitedir}/_cracklib.a
+rm -f %{buildroot}%{py2_platsitedir}/_cracklib.a
 
 chmod 0755 ./util/cracklib-format ./util/cracklib-packer
 ./util/cracklib-format dicts/* | ./util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
@@ -170,6 +170,6 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %{_libdir}/cracklib_dict.*
 
 %files -n python-%{name}
-%{py_platsitedir}/cracklib*
-%{py_platsitedir}/_cracklib.so
+%{py2_platsitedir}/cracklib*
+%{py2_platsitedir}/_cracklib.so
 
