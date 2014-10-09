@@ -170,6 +170,6 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %{_libdir}/cracklib_dict.*
 
 %files -n python-%{name}
-#%{py_platsitedir}/cracklib*
-#%{py_platsitedir}/_cracklib.so
+%{py_platsitedir}/cracklib*
+%{py_platsitedir}/_cracklib.so
 
