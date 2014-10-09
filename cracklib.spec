@@ -128,7 +128,8 @@ gunzip dicts/*.gz
 mv dicts/cracklib-words-%{vwdate} dicts/cracklib-words
 
 %build
-%configure2_5x --libdir=/%{_lib} --enable-static
+export PYTHON=python2
+%configure --libdir=/%{_lib} --enable-static
 %make
 
 %install
