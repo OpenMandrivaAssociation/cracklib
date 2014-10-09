@@ -7,8 +7,8 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.9.0
-Release:	9
+Version:	2.9.2
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2
 Url:		http://sourceforge.net/projects/cracklib/
@@ -42,7 +42,7 @@ Source34:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.gz
 Source35:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.gz
 Source36:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.gz
 Patch0:		cracklib-2.8.15-fix-python-path.patch
-Patch1:		cracklib-2.8.15-inttypes.patch
+Patch1:		cracklib-2.9.1-inttypes.patch
 BuildRequires:	gettext-devel
 Suggests:	%{name}-dicts = %{version}-%{release}
 
