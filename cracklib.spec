@@ -142,6 +142,7 @@ chmod 0755 ./util/cracklib-format ./util/cracklib-packer
 ln -s cracklib-format %{buildroot}%{_sbindir}/mkdict
 ln -s cracklib-packer %{buildroot}%{_sbindir}/packer
 
+mkdir -p %{buildroot}%{_libdir}
 ln -s %{_datadir}/cracklib/pw_dict.hwm %{buildroot}%{_libdir}/cracklib_dict.hwm
 ln -s %{_datadir}/cracklib/pw_dict.pwd %{buildroot}%{_libdir}/cracklib_dict.pwd
 ln -s %{_datadir}/cracklib/pw_dict.pwi %{buildroot}%{_libdir}/cracklib_dict.pwi
