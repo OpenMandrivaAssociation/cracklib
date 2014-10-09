@@ -104,7 +104,7 @@ If you are installing CrackLib, you should also install cracklib-dicts.
 Summary:	A password-checking library
 Group:		System/Libraries
 %rename		%{_lib}crack2-python
-BuildRequires: python-devel
+BuildRequires: pkgconfig(python3)
 
 %description -n python-%{name}
 CrackLib tests passwords to determine whether they match certain
