@@ -7,13 +7,13 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.9.2
-Release:	2
+Version:	2.9.4
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2
 Url:		http://sourceforge.net/projects/cracklib/
 Source0:	http://prdownloads.sourceforge.net/cracklib/%{version}/%{name}-%{version}.tar.gz
-Source1:        http://prdownloads.sourceforge.net/cracklib/%{wdate}/cracklib-words-%{vwdate}.gz
+Source1:	http://prdownloads.sourceforge.net/cracklib/%{wdate}/cracklib-words-%{vwdate}.gz
 Source10:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Domains.gz
 Source11:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Dosref.gz
 Source12:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Ftpsites.gz
@@ -128,7 +128,7 @@ gunzip dicts/*.gz
 mv dicts/cracklib-words-%{vwdate} dicts/cracklib-words
 
 %build
-export PYTHON=python2
+export PYTHON=%{__python2}
 %configure --libdir=/%{_lib} --enable-static
 %make
 
