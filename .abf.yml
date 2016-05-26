@@ -14,7 +14,6 @@ sources:
   Trek.gz: 56dfa1bf8d1d09b9146450045d7f398f308a4a4b
   cartoon.gz: 491699d6daf42ffb2dd7cb2f19accd0cf1c09d61
   common-passwords.txt.gz: 73d4d1fb56be173999c7c491f515bac9f3303522
-  cracklib-words-20080507.gz: e0cea03e505e709b15b8b950d56cb493166607da
   etc-hosts.gz: 8441b6de873fb7d5b4ec7d33f63af8e4d3d7de42
   famous.gz: ea6fd7f72dbad1a94458ec7e31c4a633fc5412cb
   fast-names.gz: b7745e93191000cc20e2edc71bb57286c8d248b5
@@ -27,4 +26,5 @@ sources:
   sf.gz: 24a5a29a66215e17d24deb0b520ad2ccf88cd985
   shakespeare.gz: 9f5013c8e985fc3ab8bbbec5805f818f2a7fe997
   surnames.finnish.gz: 547efc0bc895eafdb432e562d324c2208fc28600
-  cracklib-2.9.5.tar.gz: d2619bb5dc0ed216d5220a2d30922923b5f8b414
+  cracklib-2.9.6.tar.gz: 9199e7b8830717565a844430653f5a90a04fcd65
+  cracklib-words-2.9.6.bz2: 3734b6e361914faa688304d4e829566374715fe0
