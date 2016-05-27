@@ -123,6 +123,7 @@ for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE1
 	cp ${dict} dicts/
 done
 gunzip dicts/*.gz
+bunzip2 dicts/*.bz2
 mv dicts/cracklib-words-%{version} dicts/cracklib-words
 
 %build
