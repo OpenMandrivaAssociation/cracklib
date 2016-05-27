@@ -1,19 +1,17 @@
-%define wdate	2008-05-07
-%define vwdate %(echo %{wdate}|sed -e 's|-||g')
-%define sname	crack
-%define major	2
-%define libname	%mklibname %{sname} %{major}
-%define devname	%mklibname %{sname} -d
+%define sname crack
+%define major 2
+%define libname %mklibname %{sname} %{major}
+%define devname %mklibname %{sname} -d
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.9.5
+Version:	2.9.6
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2
-Url:		http://sourceforge.net/projects/cracklib/
+Url:		https://github.com/cracklib/cracklib
 Source0:	http://prdownloads.sourceforge.net/cracklib/%{version}/%{name}-%{version}.tar.gz
-Source1:	http://prdownloads.sourceforge.net/cracklib/%{wdate}/cracklib-words-%{vwdate}.gz
+Source1:	http://prdownloads.sourceforge.net/cracklib/%{version}/cracklib-words-%{version}.bz2
 Source10:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Domains.gz
 Source11:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Dosref.gz
 Source12:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Ftpsites.gz
@@ -68,7 +66,7 @@ passwords to see if they are at least minimally secure. If you
 install CrackLib, you'll also want to install the cracklib-dicts
 package.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	A password-checking library
 Group:		System/Libraries
 Suggests:	%{name} = %{version}-%{release}
@@ -77,7 +75,7 @@ Suggests:	%{name} = %{version}-%{release}
 CrackLib tests passwords to determine whether they match certain
 security-oriented characteristics.
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Cracklib link library & header file
 Group:		Development/C
 Provides:	lib%{sname}-devel = %{version}-%{release}
@@ -88,11 +86,11 @@ Requires:	%{libname} = %{version}
 The cracklib devel package include the needed library link and
 header files for development.
 
-%package	dicts
+%package dicts
 Summary:	The standard CrackLib dictionaries
 Group:		System/Libraries
 
-%description	dicts
+%description dicts
 The cracklib-dicts package includes the CrackLib dictionaries.
 CrackLib will need to use the dictionary appropriate to your system,
 which is normally put in /usr/share/dict/words.  Cracklib-dicts also contains
@@ -100,14 +98,14 @@ the utilities necessary for the creation of new dictionaries.
 
 If you are installing CrackLib, you should also install cracklib-dicts.
 
-%package -n	python-%{name}
+%package -n python2-%{name}
 Summary:	A password-checking library
 Group:		System/Libraries
 %rename		%{_lib}crack2-python
-BuildRequires: pkgconfig(python2)
-BuildRequires: python2
+BuildRequires:	pkgconfig(python2)
+BuildRequires:	python2
 
-%description -n python-%{name}
+%description -n python2-%{name}
 CrackLib tests passwords to determine whether they match certain
 security-oriented characteristics.
 
@@ -125,7 +123,8 @@ for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE1
 	cp ${dict} dicts/
 done
 gunzip dicts/*.gz
-mv dicts/cracklib-words-%{vwdate} dicts/cracklib-words
+bunzip2 dicts/*.bz2
+mv dicts/cracklib-words-%{version} dicts/cracklib-words
 
 %build
 export PYTHON=%{__python2}
@@ -169,7 +168,6 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
 
-%files -n python-%{name}
+%files -n python2-%{name}
 %{py2_platsitedir}/cracklib*
 %{py2_platsitedir}/_cracklib.so
-
