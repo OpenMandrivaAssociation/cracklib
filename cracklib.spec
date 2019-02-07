@@ -110,9 +110,8 @@ CrackLib tests passwords to determine whether they match certain
 security-oriented characteristics.
 
 %prep
-%setup -q
+%autosetup -p1
 cp -p lib/packer.h lib/packer.h.in
-%apply_patches
 autoreconf -fi
 
 for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} \
@@ -129,10 +128,10 @@ mv dicts/cracklib-words-%{version} dicts/cracklib-words
 %build
 export PYTHON=%{__python2}
 %configure --libdir=/%{_lib} --enable-static
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # MD remove static python lib
 rm -f %{buildroot}%{py2_platsitedir}/_cracklib.a
