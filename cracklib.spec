@@ -10,7 +10,7 @@ Release:	1
 Group:		System/Libraries
 License:	LGPLv2
 Url:		https://github.com/cracklib/cracklib
-Source0:	http://prdownloads.sourceforge.net/cracklib/%{version}/%{name}-%{version}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/cracklib/%{version}/%{name}-%{version}.tar.bz2
 Source1:	http://prdownloads.sourceforge.net/cracklib/%{version}/cracklib-words-%{version}.bz2
 Source10:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Domains.gz
 Source11:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Dosref.gz
