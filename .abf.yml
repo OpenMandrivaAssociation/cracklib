@@ -26,5 +26,5 @@ sources:
   sf.gz: 24a5a29a66215e17d24deb0b520ad2ccf88cd985
   shakespeare.gz: 9f5013c8e985fc3ab8bbbec5805f818f2a7fe997
   surnames.finnish.gz: 547efc0bc895eafdb432e562d324c2208fc28600
-  cracklib-2.9.6.tar.gz: 9199e7b8830717565a844430653f5a90a04fcd65
-  cracklib-words-2.9.6.bz2: 3734b6e361914faa688304d4e829566374715fe0
+  cracklib-2.9.7.tar.bz2: b16ef2ff833c72af64bd87577d9acc7a37ed6eb7
+  cracklib-words-2.9.7.bz2: d2a79707830a65514e77c3bb8957ac6a10998768
