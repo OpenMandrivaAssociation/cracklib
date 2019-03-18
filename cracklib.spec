@@ -41,9 +41,6 @@ Source35:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.gz
 Source36:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.gz
 Patch0:		cracklib-2.8.15-fix-python-path.patch
 Patch1:		cracklib-2.9.1-inttypes.patch
-Patch2:		cracklib-2.9.6-packlib-reentrant.patch
-Patch3:		cracklib-2.9.6-simplistic.patch
-Patch4:		cracklib-2.9.6-cve-2016-6318.patch
 Patch5:		cracklib-2.9.6-coverity.patch
 Patch6:		cracklib-2.9.6-lookup.patch
 BuildRequires:	gettext-devel
