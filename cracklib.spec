@@ -6,7 +6,7 @@
 Summary:	A password-checking library
 Name:		cracklib
 Version:	2.9.7
-Release:	2
+Release:	3
 Group:		System/Libraries
 License:	LGPLv2
 Url:		https://github.com/cracklib/cracklib
@@ -84,7 +84,7 @@ Provides:	lib%{sname}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
 
-%description -n	%{devname}
+%description -n %{devname}
 The cracklib devel package include the needed library link and
 header files for development.
 
@@ -100,14 +100,13 @@ the utilities necessary for the creation of new dictionaries.
 
 If you are installing CrackLib, you should also install cracklib-dicts.
 
-%package -n python2-%{name}
+%package -n python-%{name}
 Summary:	A password-checking library
 Group:		System/Libraries
 %rename		%{_lib}crack2-python
-BuildRequires:	pkgconfig(python2)
-BuildRequires:	python2
+BuildRequires:	pkgconfig(python)
 
-%description -n python2-%{name}
+%description -n python-%{name}
 CrackLib tests passwords to determine whether they match certain
 security-oriented characteristics.
 
@@ -128,15 +127,17 @@ bunzip2 dicts/*.bz2
 mv dicts/cracklib-words-%{version} dicts/cracklib-words
 
 %build
-export PYTHON=%{__python2}
-%configure --libdir=/%{_lib} --enable-static
+export PYTHON=%{__python}
+%configure \
+	--enable-static
+
 %make_build
 
 %install
 %make_install
 
 # MD remove static python lib
-rm -f %{buildroot}%{py2_platsitedir}/_cracklib.a
+rm -f %{buildroot}%{py_platsitedir}/_cracklib.a
 
 chmod 0755 ./util/cracklib-format ./util/cracklib-packer
 ./util/cracklib-format dicts/* | ./util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
@@ -146,6 +147,7 @@ ln -s cracklib-packer %{buildroot}%{_sbindir}/packer
 
 mkdir -p %{buildroot}%{_libdir}
 ln -s %{_datadir}/cracklib/pw_dict.hwm %{buildroot}%{_libdir}/cracklib_dict.hwm
+
 ln -s %{_datadir}/cracklib/pw_dict.pwd %{buildroot}%{_libdir}/cracklib_dict.pwd
 ln -s %{_datadir}/cracklib/pw_dict.pwi %{buildroot}%{_libdir}/cracklib_dict.pwi
 
@@ -157,18 +159,19 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %doc AUTHORS NEWS README*
 
 %files -n %{libname}
-/%{_lib}/libcrack.so.%{major}*
+%{_libdir}/libcrack.so.%{major}*
 
 %files -n %{devname}
 %{_includedir}/*
-/%{_lib}/*.so
-/%{_lib}/*.*a
+%{_libdir}/*.so
+%{_libdir}/*.*a
 
 %files dicts
 %{_sbindir}/*
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
 
-%files -n python2-%{name}
-%{py2_platsitedir}/cracklib*
-%{py2_platsitedir}/_cracklib.so
+%files -n python-%{name}
+%{py_platsitedir}/cracklib*
+%{py_platsitedir}/_cracklib.so
+%{py_platsitedir}/__pycache__/*
