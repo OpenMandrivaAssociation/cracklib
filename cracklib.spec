@@ -5,8 +5,8 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.9.7
-Release:	3
+Version:	2.9.9
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2
 Url:		https://github.com/cracklib/cracklib
@@ -40,9 +40,6 @@ Source34:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.gz
 Source35:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.gz
 Source36:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.gz
 Patch0:		cracklib-2.8.15-fix-python-path.patch
-Patch1:		cracklib-2.9.1-inttypes.patch
-Patch5:		cracklib-2.9.6-coverity.patch
-Patch6:		cracklib-2.9.6-lookup.patch
 BuildRequires:	gettext-devel
 Suggests:	%{name}-dicts = %{version}-%{release}
 
@@ -91,6 +88,7 @@ header files for development.
 %package dicts
 Summary:	The standard CrackLib dictionaries
 Group:		System/Libraries
+Requires:	cracklib >= %{EVRD}
 
 %description dicts
 The cracklib-dicts package includes the CrackLib dictionaries.
@@ -154,6 +152,36 @@ ln -s %{_datadir}/cracklib/pw_dict.pwi %{buildroot}%{_libdir}/cracklib_dict.pwi
 install -m644 lib/packer.h %{buildroot}%{_includedir}/
 
 %find_lang %{name}
+
+# (tpg) strip LTO from "LLVM IR bitcode" files
+check_convert_bitcode() {
+    printf '%s\n' "Checking for LLVM IR bitcode"
+    llvm_file_name=$(realpath ${1})
+    llvm_file_type=$(file ${llvm_file_name})
+
+    if printf '%s\n' "${llvm_file_type}" | grep -q "LLVM IR bitcode"; then
+# recompile without LTO
+    clang %{optflags} -fno-lto -Wno-unused-command-line-argument -x ir ${llvm_file_name} -c -o ${llvm_file_name}
+    elif printf '%s\n' "${llvm_file_type}" | grep -q "current ar archive"; then
+    printf '%s\n' "Unpacking ar archive ${llvm_file_name} to check for LLVM bitcode components."
+# create archive stage for objects
+    archive_stage=$(mktemp -d)
+    archive=${llvm_file_name}
+    cd ${archive_stage}
+    ar x ${archive}
+    for archived_file in $(find -not -type d); do
+        check_convert_bitcode ${archived_file}
+        printf '%s\n' "Repacking ${archived_file} into ${archive}."
+        ar r ${archive} ${archived_file}
+    done
+    ranlib ${archive}
+    cd ..
+    fi
+}
+
+for i in $(find %{buildroot} -type f -name "*.[ao]"); do
+    check_convert_bitcode ${i}
+done
 
 %files -f %{name}.lang
 %doc AUTHORS NEWS README*
