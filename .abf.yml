@@ -26,5 +26,9 @@ sources:
   sf.gz: 24a5a29a66215e17d24deb0b520ad2ccf88cd985
   shakespeare.gz: 9f5013c8e985fc3ab8bbbec5805f818f2a7fe997
   surnames.finnish.gz: 547efc0bc895eafdb432e562d324c2208fc28600
+  john.txt.bz2: 63c165743ceb2b542c59b2da047d87172f1ca3c2
+  cain.txt.bz2: fb84cd677e98b1948a88f2c69e5809b1e883831f
+  twitter-banned.txt.bz2: 0fe3f1a0ab99fe8ac4e46a08a93181f35148538d
+  500-worst-passwords.txt.bz2: 7de6cb09cebacc033b7657f86b8b9aa27c4320be
   cracklib-2.9.9.tar.bz2: 618d7388d25cf394c49ed3362525c0fa3ce80203
   cracklib-words-2.9.9.bz2: d2a79707830a65514e77c3bb8957ac6a10998768

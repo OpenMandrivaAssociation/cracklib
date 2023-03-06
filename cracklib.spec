@@ -39,6 +39,17 @@ Source33:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.french.gz
 Source34:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/names.hp.gz
 Source35:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/other-names.gz
 Source36:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/names/surnames.finnish.gz
+Source37:	http://downloads.skullsecurity.org/passwords/john.txt.bz2
+Source38:	http://downloads.skullsecurity.org/passwords/cain.txt.bz2
+Source39:	http://downloads.skullsecurity.org/passwords/twitter-banned.txt.bz2
+Source40:	http://downloads.skullsecurity.org/passwords/500-worst-passwords.txt.bz2
+# (tpg) this is missing from upstream tarball
+# https://github.com/cracklib/cracklib/issues/52
+Source100:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/util/cracklib-update
+Source101:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/cracklib-check.8
+Source102:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/cracklib-format.8
+Source103:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/cracklib-update.8
+Source104:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/FascistCheck.3
 Patch0:		cracklib-2.8.15-fix-python-path.patch
 BuildRequires:	gettext-devel
 Suggests:	%{name}-dicts = %{version}-%{release}
@@ -110,18 +121,24 @@ security-oriented characteristics.
 
 %prep
 %autosetup -p1
+cp %{SOURCE100} util/cracklib-update
+cp %{SOURCE101} doc/cracklib-check.8
+cp %{SOURCE102} doc/cracklib-format.8
+cp %{SOURCE103} doc/cracklib-update.8
+cp %{SOURCE104} doc/FascistCheck.3
+
 cp -p lib/packer.h lib/packer.h.in
-autoreconf -fi
+AUTOPOINT=true autoreconf -fi
 
 for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE14} \
 	%{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18} %{SOURCE19} %{SOURCE20} %{SOURCE21} \
 	%{SOURCE22} %{SOURCE23} %{SOURCE24} %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} \
 	%{SOURCE29} %{SOURCE30} %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} \
-	%{SOURCE36} %{SOURCE1}; do
+	%{SOURCE36} %{SOURCE37} %{SOURCE38} %{SOURCE39} %{SOURCE40}; do
 	cp ${dict} dicts/
 done
-gunzip dicts/*.gz
-bunzip2 dicts/*.bz2
+gzip -d dicts/*.gz
+bzip2 -d dicts/*.bz2
 mv dicts/cracklib-words-%{version} dicts/cracklib-words
 
 %build
@@ -145,7 +162,6 @@ ln -s cracklib-packer %{buildroot}%{_sbindir}/packer
 
 mkdir -p %{buildroot}%{_libdir}
 ln -s %{_datadir}/cracklib/pw_dict.hwm %{buildroot}%{_libdir}/cracklib_dict.hwm
-
 ln -s %{_datadir}/cracklib/pw_dict.pwd %{buildroot}%{_libdir}/cracklib_dict.pwd
 ln -s %{_datadir}/cracklib/pw_dict.pwi %{buildroot}%{_libdir}/cracklib_dict.pwi
 
@@ -185,7 +201,10 @@ done
 
 %files -f %{name}.lang
 %doc AUTHORS NEWS README*
-
+%{_sbindir}/*
+%doc %{_mandir}/man3/*.3*
+%doc %{_mandir}/man8/cracklib*.8*
+   
 %files -n %{libname}
 %{_libdir}/libcrack.so.%{major}*
 
@@ -195,7 +214,6 @@ done
 %{_libdir}/*.*a
 
 %files dicts
-%{_sbindir}/*
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
 
