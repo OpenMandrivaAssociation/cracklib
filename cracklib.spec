@@ -5,7 +5,7 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.9.9
+Version:	2.9.10
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2
@@ -43,14 +43,6 @@ Source37:	http://downloads.skullsecurity.org/passwords/john.txt.bz2
 Source38:	http://downloads.skullsecurity.org/passwords/cain.txt.bz2
 Source39:	http://downloads.skullsecurity.org/passwords/twitter-banned.txt.bz2
 Source40:	http://downloads.skullsecurity.org/passwords/500-worst-passwords.txt.bz2
-# (tpg) this is missing from upstream tarball
-# https://github.com/cracklib/cracklib/issues/52
-Source100:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/util/cracklib-update
-Source101:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/cracklib-check.8
-Source102:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/cracklib-format.8
-Source103:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/cracklib-update.8
-Source104:	https://raw.githubusercontent.com/cracklib/cracklib/master/src/doc/FascistCheck.3
-Patch0:		cracklib-2.8.15-fix-python-path.patch
 BuildRequires:	gettext-devel
 Suggests:	%{name}-dicts = %{version}-%{release}
 
@@ -99,7 +91,7 @@ header files for development.
 %package dicts
 Summary:	The standard CrackLib dictionaries
 Group:		System/Libraries
-Requires:	cracklib >= %{EVRD}
+Requires(meta):	cracklib >= %{EVRD}
 
 %description dicts
 The cracklib-dicts package includes the CrackLib dictionaries.
@@ -121,11 +113,6 @@ security-oriented characteristics.
 
 %prep
 %autosetup -p1
-cp %{SOURCE100} util/cracklib-update
-cp %{SOURCE101} doc/cracklib-check.8
-cp %{SOURCE102} doc/cracklib-format.8
-cp %{SOURCE103} doc/cracklib-update.8
-cp %{SOURCE104} doc/FascistCheck.3
 
 cp -p lib/packer.h lib/packer.h.in
 AUTOPOINT=true autoreconf -fi
@@ -204,7 +191,7 @@ done
 %{_sbindir}/*
 %doc %{_mandir}/man3/*.3*
 %doc %{_mandir}/man8/cracklib*.8*
-   
+
 %files -n %{libname}
 %{_libdir}/libcrack.so.%{major}*
 
@@ -218,6 +205,6 @@ done
 %{_libdir}/cracklib_dict.*
 
 %files -n python-%{name}
-%{py_platsitedir}/cracklib*
-%{py_platsitedir}/_cracklib.so
-%{py_platsitedir}/__pycache__/*
+%{python_sitearch}/*.so
+%{python_sitelib}/*cracklib*
+%{python_sitelib}/__pycache__/*

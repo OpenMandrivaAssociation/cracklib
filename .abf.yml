@@ -30,5 +30,5 @@ sources:
   cain.txt.bz2: fb84cd677e98b1948a88f2c69e5809b1e883831f
   twitter-banned.txt.bz2: 0fe3f1a0ab99fe8ac4e46a08a93181f35148538d
   500-worst-passwords.txt.bz2: 7de6cb09cebacc033b7657f86b8b9aa27c4320be
-  cracklib-2.9.9.tar.bz2: 618d7388d25cf394c49ed3362525c0fa3ce80203
-  cracklib-words-2.9.9.bz2: d2a79707830a65514e77c3bb8957ac6a10998768
+  cracklib-2.9.10.tar.bz2: b44c77a7646a31de01e32eefcaebc5e4a6771560
+  cracklib-words-2.9.10.bz2: 1b342e736b0ece0d78ed36eebdcebc3b52507b54
