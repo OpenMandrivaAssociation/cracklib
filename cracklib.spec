@@ -5,13 +5,13 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.9.10
-Release:	2
+Version:	2.9.11
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2
 Url:		https://github.com/cracklib/cracklib
-Source0:	http://prdownloads.sourceforge.net/cracklib/%{version}/%{name}-%{version}.tar.bz2
-Source1:	http://prdownloads.sourceforge.net/cracklib/%{version}/cracklib-words-%{version}.bz2
+Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/cracklib-%{version}.tar.xz
+Source1:	https://github.com/cracklib/cracklib/releases/download/v%{version}/cracklib-words-%{version}.xz
 Source10:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Domains.gz
 Source11:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Dosref.gz
 Source12:	http://ftp.cerias.purdue.edu/pub/dict/wordlists/computer/Ftpsites.gz
@@ -126,23 +126,44 @@ for dict in %{SOURCE1} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13} %{SOURCE1
 done
 gzip -d dicts/*.gz
 bzip2 -d dicts/*.bz2
+unxz dicts/*.xz
 mv dicts/cracklib-words-%{version} dicts/cracklib-words
 
-%build
-export PYTHON=%{__python}
+export CONFIGURE_TOP=$(pwd)
+mkdir build
+cd build
 %configure \
 	--enable-static
+cd ..
+%if %{cross_compiling}
+mkdir build-native
+cd build-native
+unset CC || :
+unset LDFLAGS || :
+CFLAGS="-O2" ../configure --enable-static --disable-shared
+%endif
 
-%make_build
+%build
+%make_build -C build
+
+%if %{cross_compiling}
+%make_build -C build-native
+%endif
 
 %install
-%make_install
+%make_install -C build
 
 # MD remove static python lib
 rm -f %{buildroot}%{py_platsitedir}/_cracklib.a
 
-chmod 0755 ./util/cracklib-format ./util/cracklib-packer
-./util/cracklib-format dicts/* | ./util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
+%if %{cross_compiling}
+B=build-native
+%else
+B=build
+%endif
+
+chmod 0755 ./util/cracklib-format ./$B/util/cracklib-packer
+./util/cracklib-format dicts/* | ./$B/util/cracklib-packer %{buildroot}%{_datadir}/cracklib/pw_dict
 
 ln -s cracklib-format %{buildroot}%{_sbindir}/mkdict
 ln -s cracklib-packer %{buildroot}%{_sbindir}/packer
@@ -204,7 +225,9 @@ done
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
 
+%if ! %{cross_compiling}
 %files -n python-%{name}
 %{python_sitearch}/*.so
 %{python_sitelib}/*cracklib*
 %{python_sitelib}/__pycache__/*
+%endif
