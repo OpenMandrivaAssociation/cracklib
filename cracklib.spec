@@ -3,6 +3,9 @@
 %define libname %mklibname %{sname} %{major}
 %define devname %mklibname %{sname} -d
 
+# For the python module
+%define _disable_ld_no_undefined 1
+
 Summary:	A password-checking library
 Name:		cracklib
 Version:	2.9.11
