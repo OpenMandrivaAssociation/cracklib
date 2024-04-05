@@ -47,6 +47,7 @@ Source38:	http://downloads.skullsecurity.org/passwords/cain.txt.bz2
 Source39:	http://downloads.skullsecurity.org/passwords/twitter-banned.txt.bz2
 Source40:	http://downloads.skullsecurity.org/passwords/500-worst-passwords.txt.bz2
 BuildRequires:	gettext-devel
+BuildRequires:	slibtool
 Suggests:	%{name}-dicts = %{version}-%{release}
 
 %description
@@ -147,14 +148,14 @@ CFLAGS="-O2" ../configure --enable-static --disable-shared
 %endif
 
 %build
-%make_build -C build
+%make_build -C build LIBTOOL=slibtool
 
 %if %{cross_compiling}
-%make_build -C build-native
+%make_build -C build-native LIBTOOL=slibtool
 %endif
 
 %install
-%make_install -C build
+%make_install -C build LIBTOOL=slibtool
 
 # MD remove static python lib
 rm -f %{buildroot}%{py_platsitedir}/_cracklib.a
@@ -198,9 +199,7 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
 
-%if ! %{cross_compiling}
 %files -n python-%{name}
 %{python_sitearch}/*.so
 %{python_sitelib}/*cracklib*
 %{python_sitelib}/__pycache__/*
-%endif
