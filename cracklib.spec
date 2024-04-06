@@ -3,8 +3,12 @@
 %define libname %mklibname %{sname} %{major}
 %define devname %mklibname %{sname} -d
 
+%bcond_without python
+
+%if %{with python}
 # For the python module
 %define _disable_ld_no_undefined 1
+%endif
 
 Summary:	A password-checking library
 Name:		cracklib
@@ -105,6 +109,7 @@ the utilities necessary for the creation of new dictionaries.
 
 If you are installing CrackLib, you should also install cracklib-dicts.
 
+%if %{with python}
 %package -n python-%{name}
 Summary:	A password-checking library
 Group:		System/Libraries
@@ -114,6 +119,7 @@ BuildRequires:	pkgconfig(python)
 %description -n python-%{name}
 CrackLib tests passwords to determine whether they match certain
 security-oriented characteristics.
+%endif
 
 %prep
 %autosetup -p1
@@ -137,6 +143,9 @@ export CONFIGURE_TOP=$(pwd)
 mkdir build
 cd build
 %configure \
+%if %{without python}
+	--without-python --disable-python \
+%endif
 	--enable-static
 cd ..
 %if %{cross_compiling}
@@ -199,7 +208,9 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %{_datadir}/%{name}
 %{_libdir}/cracklib_dict.*
 
+%if %{with python}
 %files -n python-%{name}
 %{python_sitearch}/*.so
 %{python_sitelib}/*cracklib*
 %{python_sitelib}/__pycache__/*
+%endif
