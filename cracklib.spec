@@ -54,6 +54,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	make
+BuildRequires:	libtool-base
 BuildRequires:	slibtool
 Suggests:	%{name}-dicts = %{version}-%{release}
 
