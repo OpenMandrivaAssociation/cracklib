@@ -51,6 +51,9 @@ Source38:	http://downloads.skullsecurity.org/passwords/cain.txt.bz2
 Source39:	http://downloads.skullsecurity.org/passwords/twitter-banned.txt.bz2
 Source40:	http://downloads.skullsecurity.org/passwords/500-worst-passwords.txt.bz2
 BuildRequires:	gettext-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	make
 BuildRequires:	slibtool
 Suggests:	%{name}-dicts = %{version}-%{release}
 
