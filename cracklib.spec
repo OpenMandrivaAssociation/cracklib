@@ -12,8 +12,8 @@
 
 Summary:	A password-checking library
 Name:		cracklib
-Version:	2.9.11
-Release:	2
+Version:	2.10.3
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2
 Url:		https://github.com/cracklib/cracklib
@@ -199,6 +199,7 @@ install -m644 lib/packer.h %{buildroot}%{_includedir}/
 %{_sbindir}/*
 %doc %{_mandir}/man3/*.3*
 %doc %{_mandir}/man8/cracklib*.8*
+%doc %{_mandir}/man8/create-cracklib-dict.8*
 
 %files -n %{libname}
 %{_libdir}/libcrack.so.%{major}*
